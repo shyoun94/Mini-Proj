@@ -52,7 +52,7 @@ export default function Widget() {
             <p>
               Vivamus volutpat ipsum ac ipsum feugiat, vel molestie elit
               vestibulum. Donec luctus commodo dictum. Aenean in turpis erat.
-              Vestibulum imperdiet nibh. Ipsum ac ipsum feugiat, vel molestie.
+              Vestibulum imperdiet nibh. Ipsum ac ipsum feugiat, vel molestie. 
             </p>
           </div>
         </div>
