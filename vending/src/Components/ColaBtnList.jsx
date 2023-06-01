@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 
+
 export default function ColaBtnList(props) {
     
         const fetchData = useCallback(async () => {
@@ -31,7 +32,7 @@ export default function ColaBtnList(props) {
                 data-count={item.count}
                 data-price={item.cost}
                 data-img={item.img}
-                // onClick={}
+                onClick={props.handleSelectDrinks}
             >
                 <img className="cola-img" src={`./images/${item.img}`} alt="" />
                 <span className="cola-name">{item.name}</span>
