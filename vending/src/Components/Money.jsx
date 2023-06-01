@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 
-export default function Money() {
+export default function Money(props) {
 
   const [money, setMoney] = useState(0);
-  const [myMoney, setMyMoney] = useState('25000원');
   const [balance, setBalance] = useState('0원');
 
   const insertMoney = (e) => {
     e.preventDefault();
     const inputMoney = parseInt(money);
-    const myMoneyVal = parseInt(myMoney.replaceAll(',', ''));
+    const myMoneyVal = parseInt(props.myMoney.replaceAll(',', ''));
     const balanceVal = parseInt(balance.replaceAll(',', ''));
 
     if (inputMoney) {
@@ -17,7 +16,7 @@ export default function Money() {
         const updatedMyMoney = new Intl.NumberFormat().format(myMoneyVal - inputMoney) + '원';
         const updatedBalance = new Intl.NumberFormat().format((balanceVal ? balanceVal : 0) + inputMoney) + '원';
 
-        setMyMoney(updatedMyMoney);
+        props.setMyMoney(updatedMyMoney);
         setBalance(updatedBalance);
       } else {
         alert('소지금이 부족합니다.');
@@ -34,12 +33,12 @@ export default function Money() {
     const balanceVal = parseInt(balance.replaceAll(',', ''));
 
     // 소지금 
-    const myMoneyVal = parseInt(myMoney.replaceAll(',', ''));
+    const myMoneyVal = parseInt(props.myMoney.replaceAll(',', ''));
 
     if (balanceVal) {
       const updatedMyMoney = new Intl.NumberFormat().format(balanceVal + myMoneyVal) + '원';
       setBalance('0원');
-      setMyMoney(updatedMyMoney);
+      props.setMyMoney(updatedMyMoney);
     }
   };
   return (

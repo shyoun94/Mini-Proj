@@ -1,21 +1,20 @@
-import React, { useCallback, useEffect, useState } from 'react';
-// import items from '../Components/Item/items.json';
-export default function ColaBtnList() {
-    const [itemList, setItemList] = useState([]);
+import React, { useCallback, useEffect } from 'react';
 
+export default function ColaBtnList(props) {
+    
         const fetchData = useCallback(async () => {
         try {
             const response = await fetch('./Item/items.json');
             if (response.ok) {
             const data = await response.json();
-            setItemList(data);
+            props.setItemList(data);
             } else {
             throw new Error(response.status);
             }
         } catch (error) {
             console.log(error);
         }
-        }, [setItemList]);
+        }, [props.setItemList]);
 
         useEffect(() => {
             fetchData();
@@ -23,7 +22,7 @@ export default function ColaBtnList() {
 
     return (
         <ul className="cola-list">
-        {itemList.map((item) => (
+        {props.itemList.map((item) => (
             <li key={item.name}>
             <button
                 className="btn-cola"
