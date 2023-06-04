@@ -1,4 +1,4 @@
-import  Widget  from "./Components/Widget";
+import Widget from "./Components/Widget";
 
 function App() {
   return (

@@ -33,6 +33,7 @@ export default function ColaBtnList(props) {
                 data-price={item.cost}
                 data-img={item.img}
                 onClick={props.handleSelectDrinks}
+                disabled={props.disabled && props.disabledItem === item.name}
             >
                 <img className="cola-img" src={`./images/${item.img}`} alt="" />
                 <span className="cola-name">{item.name}</span>

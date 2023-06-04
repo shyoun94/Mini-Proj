@@ -4,14 +4,14 @@ import Money from './Money';
 
 export default function Section1(props) {
   const [balance, setBalance] = useState('0원');
-  const [stagedList, setStagedList] = useState([]);
-
+  const [disabled, setDisabled] = useState(false);
+  const [disabledItem, setDisabledItem] = useState('');
   const handleSelectDrinks = (event) => {
     event.stopPropagation();
     let balanceVal = parseInt(balance.toString().replaceAll(",", ""));
     const targetEl = event.currentTarget;
     const targetElPrice = parseInt(targetEl.dataset.price);
-    const stagedListItems = stagedList.map((item) => item);
+    const stagedListItems = props.stagedList.map((item) => item);
     console.log('stagedListItems:', stagedListItems);
     let isStaged = false; // Check if the item is already in the staged list
 
@@ -44,8 +44,8 @@ export default function Section1(props) {
           </strong>
           `
         );
-
-        targetEl.disabled = true;
+        setDisabled(true);
+        setDisabledItem(targetEl.dataset.item);
       }
     } else {
       alert("입금한 금액이 부족합니다.");
@@ -60,7 +60,7 @@ export default function Section1(props) {
       img: target.dataset.img,
       count: "1",
     };
-    setStagedList((prevStagedList) => [...prevStagedList, stagedItem]);
+    props.setStagedList((prevStagedList) => [...prevStagedList, stagedItem]);
   };
   
   if(balance === 0){
@@ -74,6 +74,8 @@ export default function Section1(props) {
         <ColaBtnList
           itemList={props.itemList}
           setItemList={props.setItemList}
+          disabled={disabled}
+          disabledItem={disabledItem}
           handleSelectDrinks={handleSelectDrinks}
         />
         <div className="container">
@@ -84,7 +86,7 @@ export default function Section1(props) {
             setBalance={setBalance}
           />
           <ul className="sel-drinks">
-            {stagedList && stagedList.map((item) => (
+            {props.stagedList && props.stagedList.map((item) => (
               <li key={item.name} data-item={item.name} data-price={item.price}>
                 <img src={`./images/${item.img}`} alt="" />
                 {item.name}

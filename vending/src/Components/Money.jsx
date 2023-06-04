@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Money(props) {
-  const [money, setMoney] = useState(0);
+  const [money, setMoney] = useState('');
 
   const insertMoney = (e) => {
     e.preventDefault();
@@ -38,6 +38,11 @@ export default function Money(props) {
     }
   };
 
+  useEffect(() => {
+    const formattedBalance = new Intl.NumberFormat().format(parseInt(props.balance.toString().replaceAll(',', ''))) + '원';
+    props.setBalance(formattedBalance);
+  }, [props.balance]);
+
   return (
     <>
       <div className="bg-box">
@@ -60,7 +65,7 @@ export default function Money(props) {
           value={money}
           onChange={handleMoneyInput}
         />
-        <button className="btn input" type="submit">
+        <button className="btn input" type="submit" disabled={props.disabled}>
           입금
         </button>
       </form>
