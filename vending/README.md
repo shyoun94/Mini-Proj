@@ -69,4 +69,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-이후 Recoil 혹은 Redux로 상태관리를 추가 할 
+이후 Recoil 혹은 Redux로 상태관리를 추가 할 필요성이 있음
